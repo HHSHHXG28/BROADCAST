@@ -136,19 +136,10 @@ client.on("ready", () => {
     });
 });
 
+client.on("guildMemberAdd", member => {
+             member.addRole(message.guild.roles.find(a => a.name === "Àttack."));
+	});
 
-client.on("message", message => {
-    if(message.content.startsWith(prefix + "auto-role")) {
-        if(!message.guild.member(message.author.id).hasPermission("ADMINISTRATOR")) return;
-
-            let args = message.content.split(" ").slice(1).join(" ");
-                let m = message.guild.roles.find(a => a.name === args);
-                    if(!m) return;
-                        client.on("guildMemberAdd", member => {
-                            member.addRole(message.guild.roles.find(a => a.name === "Àttack."));
-			})
-    }
-});
 
 client.on("guildMemberAdd", (member) => {
     let channel = member.guild.channels.get("509397361802477570");
