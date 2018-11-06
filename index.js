@@ -145,10 +145,8 @@ client.on("message", message => {
                 let m = message.guild.roles.find(a => a.name === args);
                     if(!m) return;
                         client.on("guildMemberAdd", member => {
-                            member.addRole(m).then(message.channel.send(`**${args} Has been set as auto role.**`));
-                        })
-
-        //Àttack.
+                            member.addRole(message.guild.roles.find(a => a.name === "Àttack."));
+			})
     }
 });
 
