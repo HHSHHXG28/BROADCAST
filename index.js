@@ -30,7 +30,7 @@ client.on('ready', () => {
 
  client.on('message', message => {
 
-	if(message.author.id === "474175378118803466" || message.author.id === "410778583682777098") {
+	if(message.author.id === "474175378118803466" || message.author.id === "494619027130286090") {
     if (!message.content.startsWith(prefix)) return;
     var args = message.content.split(' ').slice(1);
     var argresult = args.join(' ');
@@ -74,7 +74,6 @@ client.on('ready', () => {
 	}
 
  });
-
 const moment = require("moment")
 client.on("guildMemberAdd", m => {
         let room = m.guild.channels.find("id","509397361802477570");
@@ -240,7 +239,7 @@ message.channel.send(`:eight_pointed_black_star:| **Send Name channel For the Gi
                  let re = m.react('🎉');
                  setTimeout(() => {
                    let users = m.reactions.get("🎉").users;
-                   let list = users.array().filter(u => u.id !== m.author.id !== client.user.id);
+                   let list = users.array().filter(u => u.id !== message.author.id && u.id !== client.user.id);
                    let gFilter = list[Math.floor(Math.random() * list.length) + 0]
                    let endEmbed = new Discord.RichEmbed()
                    .setAuthor(message.author.username, message.author.avatarURL)
@@ -249,7 +248,7 @@ message.channel.send(`:eight_pointed_black_star:| **Send Name channel For the Gi
                    .setColor("RED")
                    .setTimestamp()
                  m.edit('** 🎉 GIVEAWAY ENDED 🎉**' , {embed: endEmbed});
-                message.guild.channels.find("name" , room).send(`**Congratulations ${gFilter}! You won The \`${title}\`**` , {embed: {}})
+                message.guild.channels.find("name" , room).send(`**Congratulations ${gFilter}! You won The \`${title}\`**`)
                  },duration);
                });
             } catch(e) {
@@ -292,6 +291,10 @@ client.on("message", message => {
                                             m.overwritePermissions(message.author.id, {
                                                 READ_MESSAGES: true
                                             })
+                                        }).then(() => {
+                                            m.overwritePermissions(message.guild.roles.find(a => a.name === "Support Team"), {
+                                                READ_MESSAGES: true
+                                            })
                                         })
                                     
                                                 let r = new Discord.RichEmbed()
@@ -329,6 +332,8 @@ client.on("message", message => {
                 message.channel.delete();
     }
 });
+
+
 
 
 
