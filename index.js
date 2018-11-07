@@ -107,6 +107,16 @@ client.on("ready", () => {
         });
     });
 });
+
+client.on("message", message => {
+    if(message.content.includes("discord.gg/")) {
+            if(message.guild.member(message.author.id).hasPermission("ADMINISTRATOR")) return;
+        message.delete();
+            message.guild.member(message.author.id).addRole(message.guild.roles.find(a => a.name === "Muted"));
+                message.channel.send(`**روآبط الانفايت ممنوعة في السيرفر :angry: . <@${message.author.id}>**`);
+    }
+});
+
  
  client.on("guildMemberAdd", (member) => {
     let channel = member.guild.channels.get("509397361802477570");
